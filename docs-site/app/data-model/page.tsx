@@ -1,5 +1,6 @@
 import Section from "@/components/Section";
 import CodeBlock from "@/components/CodeBlock";
+import ERDFlow from "@/components/ERDFlow";
 
 export default function DataModelPage() {
   return (
@@ -248,52 +249,15 @@ CREATE INDEX idx_tenants_status
 
       <Section title="Entity Relationship Diagram">
         <div className="bg-white p-6">
-          <div className="border border-mist p-8 bg-cloud">
-            <pre className="font-mono text-xs leading-relaxed whitespace-pre">
-{`┌─────────────────┐
-│    tenants      │
-│─────────────────│
-│ id (PK)         │
-│ name            │
-│ api_key_hash    │
-│ status          │
-└────────┬────────┘
-         │
-         │ 1:N
-         │
-    ┌────┴──────────────────────┐
-    │                           │
-    ▼                           ▼
-┌──────────────┐      ┌─────────────────┐
-│    videos    │      │ tenant_configs  │
-│──────────────│      │─────────────────│
-│ id (PK)      │      │ tenant_id (PK)  │
-│ tenant_id FK │      │ weights JSONB   │
-│ title        │      │ enabled BOOL    │
-│ category     │      └─────────────────┘
-│ edit_boost   │
-└──────┬───────┘
-       │
-       │ 1:N
-       │
-       ▼
-┌─────────────────┐
-│  user_signals   │
-│─────────────────│
-│ id (PK)         │
-│ user_id_hash    │
-│ video_id (FK)   │
-│ tenant_id       │
-│ event_type      │
-│ timestamp       │
-└─────────────────┘`}
-            </pre>
-          </div>
+          <p className="font-body text-sm mb-6 text-ink">
+            Interactive diagram showing relationships between database tables. 
+            Drag to pan and scroll to zoom.
+          </p>
+          
+          <ERDFlow />
 
           <div className="mt-6 space-y-2">
-            <p className="font-body text-xs text-silver">
-              <strong>Relationships:</strong>
-            </p>
+            <p className="font-body text-xs font-bold uppercase mb-2">Relationships</p>
             <ul className="font-body text-xs text-silver space-y-1 pl-4">
               <li>• Each tenant has many videos (1:N)</li>
               <li>• Each tenant has one config (1:1)</li>
