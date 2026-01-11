@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Zap, Shield, Users, Clock, RefreshCw, Database } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
@@ -69,7 +69,6 @@ export default function Home() {
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             <div className="border border-mist p-5 rounded">
-              <Zap className="mb-3 text-ink" size={24} />
               <h3 className="font-body font-bold text-sm uppercase mb-2">Scale</h3>
               <p className="font-body text-xs text-silver">
                 Peak 3,000 RPS to feed endpoint
@@ -80,7 +79,6 @@ export default function Home() {
             </div>
             
             <div className="border border-mist p-5 rounded">
-              <Clock className="mb-3 text-ink" size={24} />
               <h3 className="font-body font-bold text-sm uppercase mb-2">Latency</h3>
               <p className="font-body text-xs text-silver">
                 p95 &lt; 250ms
@@ -91,7 +89,6 @@ export default function Home() {
             </div>
             
             <div className="border border-mist p-5 rounded">
-              <RefreshCw className="mb-3 text-ink" size={24} />
               <h3 className="font-body font-bold text-sm uppercase mb-2">Freshness</h3>
               <p className="font-body text-xs text-silver">
                 New content visible in ≤60s
@@ -102,7 +99,6 @@ export default function Home() {
             </div>
             
             <div className="border border-mist p-5 rounded">
-              <Shield className="mb-3 text-ink" size={24} />
               <h3 className="font-body font-bold text-sm uppercase mb-2">Privacy</h3>
               <p className="font-body text-xs text-silver">
                 Hashed user IDs only
@@ -113,7 +109,6 @@ export default function Home() {
             </div>
             
             <div className="border border-mist p-5 rounded">
-              <Users className="mb-3 text-ink" size={24} />
               <h3 className="font-body font-bold text-sm uppercase mb-2">Multi-Tenant</h3>
               <p className="font-body text-xs text-silver">
                 120 tenants supported
@@ -124,7 +119,6 @@ export default function Home() {
             </div>
             
             <div className="border border-mist p-5 rounded">
-              <Database className="mb-3 text-ink" size={24} />
               <h3 className="font-body font-bold text-sm uppercase mb-2">Rollout</h3>
               <p className="font-body text-xs text-silver">
                 Feature flag control
