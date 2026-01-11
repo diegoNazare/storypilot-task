@@ -25,19 +25,19 @@ export default function ArchitecturePage() {
             <p className="font-body text-xs font-bold uppercase mb-2">Legend</p>
             <div className="grid grid-cols-2 gap-2 font-body text-xs">
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-cloud border-2 border-ink"></div>
+                <div className="w-4 h-4 border-2 border-ink" style={{ backgroundColor: '#FAFAFA' }}></div>
                 <span>Primary Service</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-mist border-2 border-ink"></div>
+                <div className="w-4 h-4 border-2 border-ink" style={{ backgroundColor: '#E5E5E5' }}></div>
                 <span>Core Logic</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-1 bg-ink"></div>
+                <div className="w-4 h-1" style={{ backgroundColor: '#1A1A1A' }}></div>
                 <span>Sync Flow</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-1 bg-silver"></div>
+                <div className="w-4 h-1" style={{ backgroundColor: '#8A8A8A' }}></div>
                 <span>Async Flow</span>
               </div>
             </div>
