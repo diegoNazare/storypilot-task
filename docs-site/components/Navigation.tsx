@@ -59,7 +59,7 @@ export default function Navigation() {
 
         <div className="mt-12 pt-8 border-t border-mist">
           <a
-            href="https://github.com"
+            href="http://localhost:3001"
             target="_blank"
             rel="noopener noreferrer"
             className="block font-body text-xs text-silver hover:text-ink uppercase tracking-wide"
