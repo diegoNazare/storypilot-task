@@ -18,7 +18,7 @@ const initialNodes: Node[] = [
     id: 'sdk',
     type: 'default',
     position: { x: 250, y: 0 },
-    data: { label: '📱 Mobile SDK\n(Host App)' },
+    data: { label: 'Mobile SDK\n(Host App)' },
     style: { 
       background: '#FAFAFA', 
       border: '2px solid #1A1A1A',
@@ -32,7 +32,7 @@ const initialNodes: Node[] = [
     id: 'api-gateway',
     type: 'default',
     position: { x: 200, y: 120 },
-    data: { label: '🚪 API Gateway\nRate Limiting\nFeature Flags' },
+    data: { label: 'API Gateway\nRate Limiting\nFeature Flags' },
     style: { 
       background: '#FAFAFA', 
       border: '2px solid #1A1A1A',
@@ -46,7 +46,7 @@ const initialNodes: Node[] = [
     id: 'personalized',
     type: 'default',
     position: { x: 50, y: 250 },
-    data: { label: '✨ Personalized\nFeed Service' },
+    data: { label: 'Personalized\nFeed Service' },
     style: { 
       background: '#E5E5E5', 
       border: '2px solid #1A1A1A',
@@ -60,7 +60,7 @@ const initialNodes: Node[] = [
     id: 'non-personalized',
     type: 'default',
     position: { x: 350, y: 250 },
-    data: { label: '📋 Non-Personalized\nFeed Service' },
+    data: { label: 'Non-Personalized\nFeed Service' },
     style: { 
       background: '#FAFAFA', 
       border: '2px solid #1A1A1A',
@@ -73,7 +73,7 @@ const initialNodes: Node[] = [
     id: 'cache',
     type: 'default',
     position: { x: 50, y: 380 },
-    data: { label: '⚡ Cache Layer\n(Redis)' },
+    data: { label: 'Cache Layer\n(Redis)' },
     style: { 
       background: '#FAFAFA', 
       border: '2px solid #1A1A1A',
@@ -87,7 +87,7 @@ const initialNodes: Node[] = [
     id: 'ranking',
     type: 'default',
     position: { x: 50, y: 500 },
-    data: { label: '🎯 Ranking Engine\nScoring Algorithm' },
+    data: { label: 'Ranking Engine\nScoring Algorithm' },
     style: { 
       background: '#E5E5E5', 
       border: '2px solid #1A1A1A',
@@ -101,7 +101,7 @@ const initialNodes: Node[] = [
     id: 'db-videos',
     type: 'default',
     position: { x: -100, y: 650 },
-    data: { label: '🎬 Videos DB\nContent Metadata' },
+    data: { label: 'Videos DB\nContent Metadata' },
     style: { 
       background: '#FAFAFA', 
       border: '2px solid #1A1A1A',
@@ -114,7 +114,7 @@ const initialNodes: Node[] = [
     id: 'db-signals',
     type: 'default',
     position: { x: 100, y: 650 },
-    data: { label: '📊 User Signals DB\nWatch History' },
+    data: { label: 'User Signals DB\nWatch History' },
     style: { 
       background: '#FAFAFA', 
       border: '2px solid #1A1A1A',
@@ -127,7 +127,7 @@ const initialNodes: Node[] = [
     id: 'db-config',
     type: 'default',
     position: { x: 300, y: 650 },
-    data: { label: '⚙️ Tenant Config DB\nWeights & Flags' },
+    data: { label: 'Tenant Config DB\nWeights & Flags' },
     style: { 
       background: '#FAFAFA', 
       border: '2px solid #1A1A1A',
@@ -140,7 +140,7 @@ const initialNodes: Node[] = [
     id: 'event-pipeline',
     type: 'default',
     position: { x: 450, y: 480 },
-    data: { label: '📡 Event Pipeline\n(Kafka/SQS)\nAsync Processing' },
+    data: { label: 'Event Pipeline\n(Kafka/SQS)\nAsync Processing' },
     style: { 
       background: '#E5E5E5', 
       border: '2px solid #1A1A1A',
