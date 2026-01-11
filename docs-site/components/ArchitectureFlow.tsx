@@ -152,17 +152,20 @@ const initialNodes: Node[] = [
 ];
 
 const initialEdges: Edge[] = [
-  { id: 'e1', source: 'sdk', target: 'api-gateway', label: 'GET /v1/feed', animated: true },
-  { id: 'e2', source: 'api-gateway', target: 'personalized', label: 'enabled' },
-  { id: 'e3', source: 'api-gateway', target: 'non-personalized', label: 'disabled', style: { strokeDasharray: '5,5' } },
-  { id: 'e4', source: 'personalized', target: 'cache', label: 'lookup' },
-  { id: 'e5', source: 'cache', target: 'ranking', label: 'cache miss' },
-  { id: 'e6', source: 'ranking', target: 'db-videos' },
-  { id: 'e7', source: 'ranking', target: 'db-signals' },
-  { id: 'e8', source: 'ranking', target: 'db-config' },
+  // Sync flows (black #1A1A1A)
+  { id: 'e1', source: 'sdk', target: 'api-gateway', label: 'GET /v1/feed', animated: true, style: { stroke: '#1A1A1A' } },
+  { id: 'e2', source: 'api-gateway', target: 'personalized', label: 'enabled', style: { stroke: '#1A1A1A' } },
+  { id: 'e3', source: 'api-gateway', target: 'non-personalized', label: 'disabled', style: { stroke: '#1A1A1A', strokeDasharray: '5,5' } },
+  { id: 'e4', source: 'personalized', target: 'cache', label: 'lookup', style: { stroke: '#1A1A1A' } },
+  { id: 'e5', source: 'cache', target: 'ranking', label: 'cache miss', style: { stroke: '#1A1A1A' } },
+  { id: 'e6', source: 'ranking', target: 'db-videos', style: { stroke: '#1A1A1A' } },
+  { id: 'e7', source: 'ranking', target: 'db-signals', style: { stroke: '#1A1A1A' } },
+  { id: 'e8', source: 'ranking', target: 'db-config', style: { stroke: '#1A1A1A' } },
+  { id: 'e11', source: 'non-personalized', target: 'db-videos', label: 'editorial order', style: { stroke: '#1A1A1A' } },
+  
+  // Async flows (gray #8A8A8A)
   { id: 'e9', source: 'sdk', target: 'event-pipeline', label: 'user events', animated: true, style: { stroke: '#8A8A8A' } },
   { id: 'e10', source: 'event-pipeline', target: 'db-signals', label: 'async write', animated: true, style: { stroke: '#8A8A8A' } },
-  { id: 'e11', source: 'non-personalized', target: 'db-videos', label: 'editorial order' },
 ];
 
 export default function ArchitectureFlow() {
