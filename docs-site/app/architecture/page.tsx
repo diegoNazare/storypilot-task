@@ -33,12 +33,16 @@ export default function ArchitecturePage() {
                 <span>Core Logic</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-1" style={{ backgroundColor: '#1A1A1A' }}></div>
-                <span>Sync Flow</span>
+                <div className="w-4 h-0.5" style={{ backgroundColor: '#1A1A1A' }}></div>
+                <span>Sync Flow (solid)</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-1" style={{ backgroundColor: '#8A8A8A' }}></div>
-                <span>Async Flow</span>
+                <div className="flex gap-0.5">
+                  <div className="w-1 h-0.5" style={{ backgroundColor: '#8A8A8A' }}></div>
+                  <div className="w-0.5 h-0.5"></div>
+                  <div className="w-1 h-0.5" style={{ backgroundColor: '#8A8A8A' }}></div>
+                </div>
+                <span>Async Flow (dashed)</span>
               </div>
             </div>
           </div>
