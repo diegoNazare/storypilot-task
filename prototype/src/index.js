@@ -32,16 +32,16 @@ app.get('/', (req, res) => {
       nonPersonalizedFeed: 'GET /v1/feed/non-personalized?tenant_id={id}&limit={n}',
     },
     examples: {
-      gamingUser: 'GET /v1/feed?user_id=a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c&tenant_id=tenant1&limit=5',
-      cookingUser: 'GET /v1/feed?user_id=b8d2e5f1-3c9a-4e7b-a2f5-6d8c9e1a3b4c&tenant_id=tenant1&limit=5',
-      newUser: 'GET /v1/feed?user_id=e2f5d8a1-7c4b-4e9d-b6f2-9a3c5e7b1d4f&tenant_id=tenant1&limit=5',
+      gamingUser: 'GET /v1/feed?user_id=06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b&tenant_id=tenant1&limit=5',
+      cookingUser: 'GET /v1/feed?user_id=3e0e7f64a2495659941e0b704069bcb310d8dfcab850ba1aa992669ef6f55bcb&tenant_id=tenant1&limit=5',
+      newUser: 'GET /v1/feed?user_id=6f015e465db03f8a847292bf8624f567167f87f0ea0aa223d1e31779cad855c7&tenant_id=tenant1&limit=5',
     },
     demoUsers: [
-      'a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c (gaming)',
-      'b8d2e5f1-3c9a-4e7b-a2f5-6d8c9e1a3b4c (cooking)',
-      'c1e4b7d2-9f3a-4c8e-b5d9-7e2f4a6c8b1d (fitness)',
-      'd9a2c5e8-4b7f-4d1a-c3e6-8f1b3d5e7a9c (tech)',
-      'e2f5d8a1-7c4b-4e9d-b6f2-9a3c5e7b1d4f (new user)',
+      '06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b (gaming)',
+      '3e0e7f64a2495659941e0b704069bcb310d8dfcab850ba1aa992669ef6f55bcb (cooking)',
+      'b1ee9a41806228f09f41651528d41bce8f3da70ebd5af4bc386eedc89d8e511b (fitness)',
+      '4911e04c8147846b1cea5eddfb251c8b694d62b2416a2a0007bd9a50d8407d68 (tech)',
+      '6f015e465db03f8a847292bf8624f567167f87f0ea0aa223d1e31779cad855c7 (new user)',
     ],
     demoTenants: ['tenant1', 'tenant2', 'tenant3'],
   });
@@ -90,12 +90,12 @@ app.listen(PORT, () => {
   console.log(`  GET /v1/feed?user_id=<id>&tenant_id=<id>&limit=<n>`);
   console.log(`  GET /v1/feed/non-personalized?tenant_id=<id>&limit=<n>`);
   console.log('');
-  console.log('Demo user IDs (hashed):');
-  console.log('  Gaming:  a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c');
-  console.log('  Cooking: b8d2e5f1-3c9a-4e7b-a2f5-6d8c9e1a3b4c');
-  console.log('  Fitness: c1e4b7d2-9f3a-4c8e-b5d9-7e2f4a6c8b1d');
-  console.log('  Tech:    d9a2c5e8-4b7f-4d1a-c3e6-8f1b3d5e7a9c');
-  console.log('  New:     e2f5d8a1-7c4b-4e9d-b6f2-9a3c5e7b1d4f');
+  console.log('Demo user IDs (SHA-256 hashed):');
+  console.log('  Gaming:  06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b');
+  console.log('  Cooking: 3e0e7f64a2495659941e0b704069bcb310d8dfcab850ba1aa992669ef6f55bcb');
+  console.log('  Fitness: b1ee9a41806228f09f41651528d41bce8f3da70ebd5af4bc386eedc89d8e511b');
+  console.log('  Tech:    4911e04c8147846b1cea5eddfb251c8b694d62b2416a2a0007bd9a50d8407d68');
+  console.log('  New:     6f015e465db03f8a847292bf8624f567167f87f0ea0aa223d1e31779cad855c7');
   console.log('');
   console.log('Try tenants: tenant1, tenant2, tenant3, tenant4');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');

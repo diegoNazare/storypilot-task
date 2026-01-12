@@ -65,7 +65,7 @@ echo ""
 echo "Testing consistency (same user should always get same result)..."
 echo ""
 
-test_user="a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c"
+test_user="06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b"
 test_user_short="${test_user:0:8}..."
 echo "Making 3 requests for user '${test_user_short}':"
 
@@ -90,8 +90,8 @@ echo ""
 echo "Comparing tenant1 (100% rollout) vs tenant4 (50% rollout)..."
 echo ""
 
-response_t1=$(curl -s "http://localhost:3001/v1/feed?user_id=a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c&tenant_id=tenant1&limit=3")
-response_t4=$(curl -s "http://localhost:3001/v1/feed?user_id=a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c&tenant_id=tenant4&limit=3")
+response_t1=$(curl -s "http://localhost:3001/v1/feed?user_id=06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b&tenant_id=tenant1&limit=3")
+response_t4=$(curl -s "http://localhost:3001/v1/feed?user_id=06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b&tenant_id=tenant4&limit=3")
 
 echo "Tenant1 (100% rollout):"
 echo "$response_t1" | node -e "

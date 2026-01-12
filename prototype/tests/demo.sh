@@ -20,9 +20,9 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo "1️⃣  Scenario: Gaming Enthusiast User"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
-echo "User a3f7c4e9-... has watched many gaming videos. Let's see their personalized feed:"
+echo "User 06d6cbdc... has watched many gaming videos. Let's see their personalized feed:"
 echo ""
-curl -s "http://localhost:3001/v1/feed?user_id=a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c&tenant_id=tenant1&limit=5" | \
+curl -s "http://localhost:3001/v1/feed?user_id=06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b&tenant_id=tenant1&limit=5" | \
   node -e "
     const data = JSON.parse(require('fs').readFileSync(0, 'utf-8'));
     console.log('Personalized:', data.personalized ? '✓ Yes' : '✗ No');
@@ -43,9 +43,9 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo "2️⃣  Scenario: Cooking Enthusiast User"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
-echo "User b8d2e5f1-... loves cooking videos. Their feed should be different:"
+echo "User 3e0e7f64... loves cooking videos. Their feed should be different:"
 echo ""
-curl -s "http://localhost:3001/v1/feed?user_id=b8d2e5f1-3c9a-4e7b-a2f5-6d8c9e1a3b4c&tenant_id=tenant1&limit=5" | \
+curl -s "http://localhost:3001/v1/feed?user_id=3e0e7f64a2495659941e0b704069bcb310d8dfcab850ba1aa992669ef6f55bcb&tenant_id=tenant1&limit=5" | \
   node -e "
     const data = JSON.parse(require('fs').readFileSync(0, 'utf-8'));
     console.log('Personalized:', data.personalized ? '✓ Yes' : '✗ No');
@@ -65,9 +65,9 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo "3️⃣  Scenario: New User (Cold Start)"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
-echo "A new user (e2f5d8a1-...) with no watch history gets popular content:"
+echo "A new user (6f015e46...) with no watch history gets popular content:"
 echo ""
-curl -s "http://localhost:3001/v1/feed?user_id=e2f5d8a1-7c4b-4e9d-b6f2-9a3c5e7b1d4f&tenant_id=tenant1&limit=5" | \
+curl -s "http://localhost:3001/v1/feed?user_id=6f015e465db03f8a847292bf8624f567167f87f0ea0aa223d1e31779cad855c7&tenant_id=tenant1&limit=5" | \
   node -e "
     const data = JSON.parse(require('fs').readFileSync(0, 'utf-8'));
     console.log('Personalized:', data.personalized ? '✓ Yes' : '✗ No (Cold Start)');
@@ -90,7 +90,7 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo ""
 echo "Tenant3 has personalization disabled (feature flag):"
 echo ""
-curl -s "http://localhost:3001/v1/feed?user_id=a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c&tenant_id=tenant3&limit=5" | \
+curl -s "http://localhost:3001/v1/feed?user_id=06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b&tenant_id=tenant3&limit=5" | \
   node -e "
     const data = JSON.parse(require('fs').readFileSync(0, 'utf-8'));
     console.log('Personalized:', data.personalized ? '✓ Yes' : '✗ No');
@@ -115,14 +115,14 @@ echo "Second request for same user should hit cache (faster response):"
 echo ""
 
 # First request (cache miss)
-RESPONSE1=$(curl -s "http://localhost:3001/v1/feed?user_id=a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c&tenant_id=tenant1&limit=5")
+RESPONSE1=$(curl -s "http://localhost:3001/v1/feed?user_id=06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b&tenant_id=tenant1&limit=5")
 TIME1=$(echo $RESPONSE1 | node -e "console.log(JSON.parse(require('fs').readFileSync(0, 'utf-8')).metadata.response_time_ms)")
 CACHE1=$(echo $RESPONSE1 | node -e "console.log(JSON.parse(require('fs').readFileSync(0, 'utf-8')).metadata.cache_hit)")
 
 echo "First request:  ${TIME1}ms (cache_hit: ${CACHE1})"
 
 # Second request (cache hit)
-RESPONSE2=$(curl -s "http://localhost:3001/v1/feed?user_id=a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c&tenant_id=tenant1&limit=5")
+RESPONSE2=$(curl -s "http://localhost:3001/v1/feed?user_id=06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b&tenant_id=tenant1&limit=5")
 TIME2=$(echo $RESPONSE2 | node -e "console.log(JSON.parse(require('fs').readFileSync(0, 'utf-8')).metadata.response_time_ms)")
 CACHE2=$(echo $RESPONSE2 | node -e "console.log(JSON.parse(require('fs').readFileSync(0, 'utf-8')).metadata.cache_hit)")
 
@@ -142,5 +142,5 @@ echo "  • Cache improves response times significantly"
 echo ""
 echo "Try it yourself:"
 echo "  # Tech enthusiast user"
-echo "  curl \"http://localhost:3001/v1/feed?user_id=d9a2c5e8-4b7f-4d1a-c3e6-8f1b3d5e7a9c&tenant_id=tenant1&limit=10\""
+echo "  curl \"http://localhost:3001/v1/feed?user_id=4911e04c8147846b1cea5eddfb251c8b694d62b2416a2a0007bd9a50d8407d68&tenant_id=tenant1&limit=10\""
 echo ""

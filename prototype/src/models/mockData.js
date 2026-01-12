@@ -67,27 +67,27 @@ const videos = [
   { id: 'vid_046', tenant_id: 'tenant4', title: 'Fitness Challenge', category: 'fitness', duration_seconds: 480, editorial_boost: 1.4, created_at: '2026-01-09T07:00:00Z' },
 ];
 
-// Demo user ID mapping (for reference only - NOT exposed in API):
-// a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c = Gaming enthusiast
-// b8d2e5f1-3c9a-4e7b-a2f5-6d8c9e1a3b4c = Cooking enthusiast
-// c1e4b7d2-9f3a-4c8e-b5d9-7e2f4a6c8b1d = Fitness enthusiast
-// d9a2c5e8-4b7f-4d1a-c3e6-8f1b3d5e7a9c = Tech enthusiast
-// e2f5d8a1-7c4b-4e9d-b6f2-9a3c5e7b1d4f = New user (cold start)
-// f1a8c3e6-2b9d-4f7a-c5e8-1d3b6f9a2c4e = Test user 1 (for rollout testing)
-// f9c2e5a8-7d4b-4a1f-e3c6-8b1d5f2a7c9e = Test user 2 (for rollout testing)
-// 1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5d = Test user 3 (for rollout testing)
-// 2b3c4d5e-6f7a-4b8c-9d0e-1f2a3b4c5d6e = Test user 4 (for rollout testing)
-// 3c4d5e6f-7a8b-4c9d-0e1f-2a3b4c5d6e7f = Test user 5 (for rollout testing)
-// 4d5e6f7a-8b9c-4d0e-1f2a-3b4c5d6e7f8a = Test user 6 (for rollout testing)
-// 5e6f7a8b-9c0d-4e1f-2a3b-4c5d6e7f8a9b = Test user 7 (for rollout testing)
-// 6f7a8b9c-0d1e-4f2a-3b4c-5d6e7f8a9b0c = Test user 8 (for rollout testing)
-// 7a8b9c0d-1e2f-4a3b-4c5d-6e7f8a9b0c1d = Test user 9 (for rollout testing)
-// 8b9c0d1e-2f3a-4b4c-5d6e-7f8a9b0c1d2e = Test user 10 (for rollout testing)
+// Demo user ID mapping (SHA-256 hashes for privacy):
+// 06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b = Gaming enthusiast
+// 3e0e7f64a2495659941e0b704069bcb310d8dfcab850ba1aa992669ef6f55bcb = Cooking enthusiast
+// b1ee9a41806228f09f41651528d41bce8f3da70ebd5af4bc386eedc89d8e511b = Fitness enthusiast
+// 4911e04c8147846b1cea5eddfb251c8b694d62b2416a2a0007bd9a50d8407d68 = Tech enthusiast
+// 6f015e465db03f8a847292bf8624f567167f87f0ea0aa223d1e31779cad855c7 = New user (cold start)
+// 93ebcaaf01cb9c2c361b265de35405bf0aa008776a82552995822f64b762c5d0 = Test user 1 (for rollout testing)
+// 6037c2080225708ce97e945e298e2d91d1b5e973309f6c56935cbcdeb6b4f6ba = Test user 2 (for rollout testing)
+// 634098a05d797cb150e8b99607bf533980faf751e72bf101118273816fc897a2 = Test user 3 (for rollout testing)
+// 19f11597a664122d36c0843b845ca1ec04e70c7ecf2555b63750fbd5dc4b20b0 = Test user 4 (for rollout testing)
+// 3bd8fa52cd5b1db989f1e2c82a0dec855056060cc5fa57d65bf275a907521dd7 = Test user 5 (for rollout testing)
+// 9da3babc5b647eee01bf6bf01808a089f38e1ae82b367c9d01ce7366d0ff98b7 = Test user 6 (for rollout testing)
+// f89601d2ba02803e2c306ce8918f8bd2305620571a2d69924e015d901b7d7cc7 = Test user 7 (for rollout testing)
+// 7ad425745db8c895d9c5e1f8cbee2b9f5e93da9237c43461ef2fe69314c88acf = Test user 8 (for rollout testing)
+// bd4f1dbf26f60ee10f1479eb87e310ad7b1dc993d48d0f3234bf1985aff86935 = Test user 9 (for rollout testing)
+// f7e1dfac27d50660821d7985b2ba4f4caf32e3ab0eb91c0ded750c7534ea06d1 = Test user 10 (for rollout testing)
 
 // Mock user signals (watch history and engagement)
 const userSignals = {
   // Gaming enthusiast
-  'a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c': [
+  '06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b': [
     { video_id: 'vid_001', event_type: 'complete', engagement_pct: 95, timestamp: '2026-01-09T15:00:00Z' },
     { video_id: 'vid_002', event_type: 'complete', engagement_pct: 100, timestamp: '2026-01-09T15:10:00Z' },
     { video_id: 'vid_003', event_type: 'complete', engagement_pct: 90, timestamp: '2026-01-09T15:20:00Z' },
@@ -99,7 +99,7 @@ const userSignals = {
   ],
   
   // Cooking enthusiast
-  'b8d2e5f1-3c9a-4e7b-a2f5-6d8c9e1a3b4c': [
+  '3e0e7f64a2495659941e0b704069bcb310d8dfcab850ba1aa992669ef6f55bcb': [
     { video_id: 'vid_006', event_type: 'complete', engagement_pct: 100, timestamp: '2026-01-09T16:00:00Z' },
     { video_id: 'vid_007', event_type: 'complete', engagement_pct: 95, timestamp: '2026-01-09T16:10:00Z' },
     { video_id: 'vid_008', event_type: 'complete', engagement_pct: 100, timestamp: '2026-01-09T16:20:00Z' },
@@ -111,7 +111,7 @@ const userSignals = {
   ],
   
   // Fitness enthusiast
-  'c1e4b7d2-9f3a-4c8e-b5d9-7e2f4a6c8b1d': [
+  'b1ee9a41806228f09f41651528d41bce8f3da70ebd5af4bc386eedc89d8e511b': [
     { video_id: 'vid_011', event_type: 'complete', engagement_pct: 100, timestamp: '2026-01-09T07:00:00Z' },
     { video_id: 'vid_012', event_type: 'complete', engagement_pct: 100, timestamp: '2026-01-09T07:30:00Z' },
     { video_id: 'vid_013', event_type: 'complete', engagement_pct: 95, timestamp: '2026-01-10T06:30:00Z' },
@@ -123,7 +123,7 @@ const userSignals = {
   ],
   
   // Tech enthusiast
-  'd9a2c5e8-4b7f-4d1a-c3e6-8f1b3d5e7a9c': [
+  '4911e04c8147846b1cea5eddfb251c8b694d62b2416a2a0007bd9a50d8407d68': [
     { video_id: 'vid_016', event_type: 'complete', engagement_pct: 100, timestamp: '2026-01-09T15:30:00Z' },
     { video_id: 'vid_017', event_type: 'complete', engagement_pct: 95, timestamp: '2026-01-09T16:00:00Z' },
     { video_id: 'vid_018', event_type: 'complete', engagement_pct: 100, timestamp: '2026-01-10T14:00:00Z' },
@@ -134,34 +134,34 @@ const userSignals = {
   ],
   
   // Test users for rollout percentage testing (tenant4)
-  'f1a8c3e6-2b9d-4f7a-c5e8-1d3b6f9a2c4e': [
+  '93ebcaaf01cb9c2c361b265de35405bf0aa008776a82552995822f64b762c5d0': [
     { video_id: 'vid_044', event_type: 'complete', engagement_pct: 95, timestamp: '2026-01-10T15:00:00Z' },
   ],
-  'f9c2e5a8-7d4b-4a1f-e3c6-8b1d5f2a7c9e': [
+  '6037c2080225708ce97e945e298e2d91d1b5e973309f6c56935cbcdeb6b4f6ba': [
     { video_id: 'vid_044', event_type: 'complete', engagement_pct: 95, timestamp: '2026-01-10T15:00:00Z' },
   ],
-  '1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5d': [
+  '634098a05d797cb150e8b99607bf533980faf751e72bf101118273816fc897a2': [
     { video_id: 'vid_044', event_type: 'complete', engagement_pct: 90, timestamp: '2026-01-10T15:00:00Z' },
   ],
-  '2b3c4d5e-6f7a-4b8c-9d0e-1f2a3b4c5d6e': [
+  '19f11597a664122d36c0843b845ca1ec04e70c7ecf2555b63750fbd5dc4b20b0': [
     { video_id: 'vid_045', event_type: 'complete', engagement_pct: 88, timestamp: '2026-01-10T15:00:00Z' },
   ],
-  '3c4d5e6f-7a8b-4c9d-0e1f-2a3b4c5d6e7f': [
+  '3bd8fa52cd5b1db989f1e2c82a0dec855056060cc5fa57d65bf275a907521dd7': [
     { video_id: 'vid_046', event_type: 'complete', engagement_pct: 92, timestamp: '2026-01-10T15:00:00Z' },
   ],
-  '4d5e6f7a-8b9c-4d0e-1f2a-3b4c5d6e7f8a': [
+  '9da3babc5b647eee01bf6bf01808a089f38e1ae82b367c9d01ce7366d0ff98b7': [
     { video_id: 'vid_044', event_type: 'view', engagement_pct: 75, timestamp: '2026-01-10T15:00:00Z' },
   ],
-  '5e6f7a8b-9c0d-4e1f-2a3b-4c5d6e7f8a9b': [
+  'f89601d2ba02803e2c306ce8918f8bd2305620571a2d69924e015d901b7d7cc7': [
     { video_id: 'vid_045', event_type: 'complete', engagement_pct: 100, timestamp: '2026-01-10T15:00:00Z' },
   ],
-  '6f7a8b9c-0d1e-4f2a-3b4c-5d6e7f8a9b0c': [
+  '7ad425745db8c895d9c5e1f8cbee2b9f5e93da9237c43461ef2fe69314c88acf': [
     { video_id: 'vid_046', event_type: 'complete', engagement_pct: 85, timestamp: '2026-01-10T15:00:00Z' },
   ],
-  '7a8b9c0d-1e2f-4a3b-4c5d-6e7f8a9b0c1d': [
+  'bd4f1dbf26f60ee10f1479eb87e310ad7b1dc993d48d0f3234bf1985aff86935': [
     { video_id: 'vid_044', event_type: 'complete', engagement_pct: 93, timestamp: '2026-01-10T15:00:00Z' },
   ],
-  '8b9c0d1e-2f3a-4b4c-5d6e-7f8a9b0c1d2e': [
+  'f7e1dfac27d50660821d7985b2ba4f4caf32e3ab0eb91c0ded750c7534ea06d1': [
     { video_id: 'vid_045', event_type: 'skip', engagement_pct: 20, timestamp: '2026-01-10T15:00:00Z' },
   ],
 };

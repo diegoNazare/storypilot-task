@@ -67,13 +67,13 @@ Returns a personalized video feed for a user.
 **Example:**
 ```bash
 # Gaming enthusiast user
-curl "http://localhost:3001/v1/feed?user_id=a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c&tenant_id=tenant1&limit=5"
+curl "http://localhost:3001/v1/feed?user_id=06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b&tenant_id=tenant1&limit=5"
 ```
 
 **Response:**
 ```json
 {
-  "user_id": "a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c",
+  "user_id": "06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b",
   "tenant_id": "tenant1",
   "personalized": true,
   "feed": [
@@ -162,13 +162,13 @@ Weights are configurable per tenant.
 
 ### Demo Users
 
-The prototype includes several mock users with hashed identifiers (UUIDs):
+The prototype includes several mock users with SHA-256 hashed identifiers:
 
-- **a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c**: Gaming enthusiast (watched 8 gaming videos)
-- **b8d2e5f1-3c9a-4e7b-a2f5-6d8c9e1a3b4c**: Cooking enthusiast (watched 5 cooking videos)
-- **c1e4b7d2-9f3a-4c8e-b5d9-7e2f4a6c8b1d**: Fitness enthusiast (watched 5 fitness videos)
-- **d9a2c5e8-4b7f-4d1a-c3e6-8f1b3d5e7a9c**: Tech enthusiast (watched 5 tech videos)
-- **e2f5d8a1-7c4b-4e9d-b6f2-9a3c5e7b1d4f**: New user (no watch history - cold start)
+- **06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b**: Gaming enthusiast (watched 8 gaming videos)
+- **3e0e7f64a2495659941e0b704069bcb310d8dfcab850ba1aa992669ef6f55bcb**: Cooking enthusiast (watched 5 cooking videos)
+- **b1ee9a41806228f09f41651528d41bce8f3da70ebd5af4bc386eedc89d8e511b**: Fitness enthusiast (watched 5 fitness videos)
+- **4911e04c8147846b1cea5eddfb251c8b694d62b2416a2a0007bd9a50d8407d68**: Tech enthusiast (watched 5 tech videos)
+- **6f015e465db03f8a847292bf8624f567167f87f0ea0aa223d1e31779cad855c7**: New user (no watch history - cold start)
 
 ### Tenants
 
@@ -185,31 +185,31 @@ The prototype includes several mock users with hashed identifiers (UUIDs):
 
 ### Scenario 1: Personalized Feed (Gaming Enthusiast)
 ```bash
-curl "http://localhost:3001/v1/feed?user_id=a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c&tenant_id=tenant1&limit=10"
+curl "http://localhost:3001/v1/feed?user_id=06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b&tenant_id=tenant1&limit=10"
 ```
 Expected: Gaming videos ranked highest
 
 ### Scenario 2: Different User, Same Tenant (Cooking Enthusiast)
 ```bash
-curl "http://localhost:3001/v1/feed?user_id=b8d2e5f1-3c9a-4e7b-a2f5-6d8c9e1a3b4c&tenant_id=tenant1&limit=10"
+curl "http://localhost:3001/v1/feed?user_id=3e0e7f64a2495659941e0b704069bcb310d8dfcab850ba1aa992669ef6f55bcb&tenant_id=tenant1&limit=10"
 ```
 Expected: Cooking videos ranked highest
 
 ### Scenario 3: Cold Start (New User)
 ```bash
-curl "http://localhost:3001/v1/feed?user_id=e2f5d8a1-7c4b-4e9d-b6f2-9a3c5e7b1d4f&tenant_id=tenant1&limit=10"
+curl "http://localhost:3001/v1/feed?user_id=6f015e465db03f8a847292bf8624f567167f87f0ea0aa223d1e31779cad855c7&tenant_id=tenant1&limit=10"
 ```
 Expected: High editorial boost videos (popular content)
 
 ### Scenario 4: Feature Flag Disabled
 ```bash
-curl "http://localhost:3001/v1/feed?user_id=a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c&tenant_id=tenant3&limit=10"
+curl "http://localhost:3001/v1/feed?user_id=06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b&tenant_id=tenant3&limit=10"
 ```
 Expected: Editorial order only, `personalized: false`
 
 ### Scenario 5: Different Tenant Weights
 ```bash
-curl "http://localhost:3001/v1/feed?user_id=a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c&tenant_id=tenant2&limit=10"
+curl "http://localhost:3001/v1/feed?user_id=06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b&tenant_id=tenant2&limit=10"
 ```
 Expected: Different ranking due to tenant2's 70% watch history weight
 
