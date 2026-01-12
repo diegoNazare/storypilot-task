@@ -1,10 +1,67 @@
 const express = require('express');
+const crypto = require('crypto');
 const { videos, userSignals, tenantConfigs } = require('../models/mockData');
 const { rankVideos, getNonPersonalizedFeed, getColdStartFeed } = require('../services/personalization');
 const cache = require('../services/cache');
 const { PERSONALIZATION_ENABLED, CACHE_TTL } = require('../config/constants');
 
 const router = express.Router();
+
+/**
+ * Hash user_id to get a consistent value for percentage-based rollout
+ * Returns a number between 0-99 representing the user's percentile
+ */
+function hashUserId(userId) {
+  const hash = crypto.createHash('sha256').update(userId).digest('hex');
+  // Take first 8 characters of hash and convert to integer
+  const hashInt = parseInt(hash.substring(0, 8), 16);
+  return hashInt % 100;
+}
+
+/**
+ * Determines if personalization should be enabled for a given user
+ * Implements multi-level feature flag hierarchy:
+ * L1: Global kill switch (environment variable)
+ * L2: Per-tenant flag (database configuration)
+ * L3: Percentage rollout (gradual A/B testing)
+ * 
+ * @param {string} tenantId - Tenant identifier
+ * @param {string} userId - User identifier
+ * @param {object} tenantConfig - Tenant configuration object
+ * @returns {object} { enabled: boolean, reason: string }
+ */
+function shouldPersonalize(tenantId, userId, tenantConfig) {
+  // L1: Global kill switch
+  if (!PERSONALIZATION_ENABLED) {
+    return { 
+      enabled: false, 
+      reason: 'Global personalization disabled' 
+    };
+  }
+  
+  // L2: Tenant-specific flag
+  if (!tenantConfig.personalization_enabled) {
+    return { 
+      enabled: false, 
+      reason: 'Personalization disabled for tenant' 
+    };
+  }
+  
+  // L3: Percentage rollout
+  const userHash = hashUserId(userId);
+  const userPercentile = userHash; // userHash is already 0-99
+  if (userPercentile >= tenantConfig.rollout_percentage) {
+    return { 
+      enabled: false, 
+      reason: `User not in rollout (percentile: ${userPercentile}, threshold: ${tenantConfig.rollout_percentage})` 
+    };
+  }
+  
+  return { 
+    enabled: true, 
+    reason: 'All checks passed' 
+  };
+}
 
 /**
  * GET /v1/feed - Personalized video feed
@@ -58,31 +115,11 @@ router.get('/feed', (req, res) => {
     });
   }
   
-  // Check global kill switch
-  if (!PERSONALIZATION_ENABLED) {
-    const candidateVideos = videos.filter(v => v.tenant_id === tenant_id);
-    const feed = getNonPersonalizedFeed(candidateVideos, parseInt(limit));
-    
-    const response = {
-      user_id,
-      tenant_id,
-      personalized: false,
-      feed,
-      metadata: {
-        total_candidates: candidateVideos.length,
-        response_time_ms: Date.now() - startTime,
-        cache_hit: false,
-        algorithm_version: 'editorial_only',
-        reason: 'Global personalization disabled',
-      },
-    };
-    
-    cache.set(cacheKey, response, CACHE_TTL.FEED);
-    return res.json(response);
-  }
+  // Check if personalization should be enabled (multi-level feature flags)
+  const personalizationCheck = shouldPersonalize(tenant_id, user_id, tenantConfig);
   
-  // Check tenant-level feature flag
-  if (!tenantConfig.personalization_enabled) {
+  if (!personalizationCheck.enabled) {
+    // Fall back to non-personalized feed
     const candidateVideos = videos.filter(v => v.tenant_id === tenant_id);
     const feed = getNonPersonalizedFeed(candidateVideos, parseInt(limit));
     
@@ -96,7 +133,7 @@ router.get('/feed', (req, res) => {
         response_time_ms: Date.now() - startTime,
         cache_hit: false,
         algorithm_version: 'editorial_only',
-        reason: 'Personalization disabled for tenant',
+        reason: personalizationCheck.reason,
       },
     };
     

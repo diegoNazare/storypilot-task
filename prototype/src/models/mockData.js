@@ -60,6 +60,11 @@ const videos = [
   { id: 'vid_041', tenant_id: 'tenant2', title: 'Product Launch Event', category: 'business', duration_seconds: 1800, editorial_boost: 1.5, created_at: '2026-01-10T10:00:00Z' },
   { id: 'vid_042', tenant_id: 'tenant2', title: 'Marketing Strategy Tips', category: 'business', duration_seconds: 600, editorial_boost: 1.2, created_at: '2026-01-11T11:00:00Z' },
   { id: 'vid_043', tenant_id: 'tenant2', title: 'CEO Interview', category: 'business', duration_seconds: 900, editorial_boost: 1.4, created_at: '2026-01-09T12:00:00Z' },
+  
+  // Tenant 4 videos (for rollout percentage testing)
+  { id: 'vid_044', tenant_id: 'tenant4', title: 'Gaming Highlights', category: 'gaming', duration_seconds: 240, editorial_boost: 1.3, created_at: '2026-01-10T14:00:00Z' },
+  { id: 'vid_045', tenant_id: 'tenant4', title: 'Cooking Tutorial', category: 'cooking', duration_seconds: 360, editorial_boost: 1.2, created_at: '2026-01-11T10:00:00Z' },
+  { id: 'vid_046', tenant_id: 'tenant4', title: 'Fitness Challenge', category: 'fitness', duration_seconds: 480, editorial_boost: 1.4, created_at: '2026-01-09T07:00:00Z' },
 ];
 
 // Mock user signals (watch history and engagement)
@@ -110,6 +115,16 @@ const userSignals = {
     { video_id: 'vid_037', event_type: 'complete', engagement_pct: 88, timestamp: '2026-01-11T13:00:00Z' },
     { video_id: 'vid_032', event_type: 'skip', engagement_pct: 20, timestamp: '2026-01-11T21:00:00Z' },
   ],
+  
+  // Test users for rollout percentage (tenant4)
+  // 'testuser1' should hash to a low percentile (likely in rollout)
+  'testuser1': [
+    { video_id: 'vid_044', event_type: 'complete', engagement_pct: 95, timestamp: '2026-01-10T15:00:00Z' },
+  ],
+  // 'testuser999' should hash to a high percentile (likely not in rollout)
+  'testuser999': [
+    { video_id: 'vid_044', event_type: 'complete', engagement_pct: 95, timestamp: '2026-01-10T15:00:00Z' },
+  ],
 };
 
 // Mock tenant configurations
@@ -140,6 +155,15 @@ const tenantConfigs = {
       editorial: 0.2,
     },
     rollout_percentage: 0,
+  },
+  'tenant4': {
+    personalization_enabled: true,
+    personalization_weights: {
+      watch_history: 0.5,
+      engagement: 0.3,
+      editorial: 0.2,
+    },
+    rollout_percentage: 50, // Only 50% of users get personalization (A/B test)
   },
 };
 
