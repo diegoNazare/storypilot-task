@@ -47,8 +47,8 @@ The demo script showcases different scenarios:
 ```
 
 This will demonstrate:
-1. Alice (gaming enthusiast) - personalized gaming content
-2. Bob (cooking enthusiast) - personalized cooking content
+1. Gaming enthusiast user - personalized gaming content
+2. Cooking enthusiast user - personalized cooking content
 3. New user - cold start with popular content
 4. Feature flag disabled - non-personalized editorial feed
 5. Cache performance - comparing first vs. cached requests
@@ -60,19 +60,20 @@ This will demonstrate:
 Returns a personalized video feed for a user.
 
 **Query Parameters:**
-- `user_id` (required): User identifier (use: alice, bob, charlie, diana, or newuser)
+- `user_id` (required): Hashed user identifier (UUID format)
 - `tenant_id` (required): Tenant identifier (use: tenant1, tenant2, tenant3)
 - `limit` (optional): Number of videos to return (default: 20)
 
 **Example:**
 ```bash
-curl "http://localhost:3001/v1/feed?user_id=alice&tenant_id=tenant1&limit=5"
+# Gaming enthusiast user
+curl "http://localhost:3001/v1/feed?user_id=a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c&tenant_id=tenant1&limit=5"
 ```
 
 **Response:**
 ```json
 {
-  "user_id": "alice",
+  "user_id": "a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c",
   "tenant_id": "tenant1",
   "personalized": true,
   "feed": [
@@ -161,11 +162,13 @@ Weights are configurable per tenant.
 
 ### Demo Users
 
-- **alice**: Gaming enthusiast (watched 8 gaming videos)
-- **bob**: Cooking enthusiast (watched 5 cooking videos)
-- **charlie**: Fitness enthusiast (watched 5 fitness videos)
-- **diana**: Tech enthusiast (watched 5 tech videos)
-- **newuser**: No watch history (cold start)
+The prototype includes several mock users with hashed identifiers (UUIDs):
+
+- **a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c**: Gaming enthusiast (watched 8 gaming videos)
+- **b8d2e5f1-3c9a-4e7b-a2f5-6d8c9e1a3b4c**: Cooking enthusiast (watched 5 cooking videos)
+- **c1e4b7d2-9f3a-4c8e-b5d9-7e2f4a6c8b1d**: Fitness enthusiast (watched 5 fitness videos)
+- **d9a2c5e8-4b7f-4d1a-c3e6-8f1b3d5e7a9c**: Tech enthusiast (watched 5 tech videos)
+- **e2f5d8a1-7c4b-4e9d-b6f2-9a3c5e7b1d4f**: New user (no watch history - cold start)
 
 ### Tenants
 
@@ -180,33 +183,33 @@ Weights are configurable per tenant.
 
 ## Testing Different Scenarios
 
-### Scenario 1: Personalized Feed
+### Scenario 1: Personalized Feed (Gaming Enthusiast)
 ```bash
-curl "http://localhost:3001/v1/feed?user_id=alice&tenant_id=tenant1&limit=10"
+curl "http://localhost:3001/v1/feed?user_id=a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c&tenant_id=tenant1&limit=10"
 ```
 Expected: Gaming videos ranked highest
 
-### Scenario 2: Different User, Same Tenant
+### Scenario 2: Different User, Same Tenant (Cooking Enthusiast)
 ```bash
-curl "http://localhost:3001/v1/feed?user_id=bob&tenant_id=tenant1&limit=10"
+curl "http://localhost:3001/v1/feed?user_id=b8d2e5f1-3c9a-4e7b-a2f5-6d8c9e1a3b4c&tenant_id=tenant1&limit=10"
 ```
 Expected: Cooking videos ranked highest
 
-### Scenario 3: Cold Start
+### Scenario 3: Cold Start (New User)
 ```bash
-curl "http://localhost:3001/v1/feed?user_id=newuser&tenant_id=tenant1&limit=10"
+curl "http://localhost:3001/v1/feed?user_id=e2f5d8a1-7c4b-4e9d-b6f2-9a3c5e7b1d4f&tenant_id=tenant1&limit=10"
 ```
 Expected: High editorial boost videos (popular content)
 
 ### Scenario 4: Feature Flag Disabled
 ```bash
-curl "http://localhost:3001/v1/feed?user_id=alice&tenant_id=tenant3&limit=10"
+curl "http://localhost:3001/v1/feed?user_id=a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c&tenant_id=tenant3&limit=10"
 ```
 Expected: Editorial order only, `personalized: false`
 
 ### Scenario 5: Different Tenant Weights
 ```bash
-curl "http://localhost:3001/v1/feed?user_id=alice&tenant_id=tenant2&limit=10"
+curl "http://localhost:3001/v1/feed?user_id=a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c&tenant_id=tenant2&limit=10"
 ```
 Expected: Different ranking due to tenant2's 70% watch history weight
 

@@ -32,11 +32,17 @@ app.get('/', (req, res) => {
       nonPersonalizedFeed: 'GET /v1/feed/non-personalized?tenant_id={id}&limit={n}',
     },
     examples: {
-      alice: 'GET /v1/feed?user_id=alice&tenant_id=tenant1&limit=5',
-      bob: 'GET /v1/feed?user_id=bob&tenant_id=tenant1&limit=5',
-      newUser: 'GET /v1/feed?user_id=newuser&tenant_id=tenant1&limit=5',
+      gamingUser: 'GET /v1/feed?user_id=a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c&tenant_id=tenant1&limit=5',
+      cookingUser: 'GET /v1/feed?user_id=b8d2e5f1-3c9a-4e7b-a2f5-6d8c9e1a3b4c&tenant_id=tenant1&limit=5',
+      newUser: 'GET /v1/feed?user_id=e2f5d8a1-7c4b-4e9d-b6f2-9a3c5e7b1d4f&tenant_id=tenant1&limit=5',
     },
-    demoUsers: ['alice', 'bob', 'charlie', 'diana', 'newuser'],
+    demoUsers: [
+      'a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c (gaming)',
+      'b8d2e5f1-3c9a-4e7b-a2f5-6d8c9e1a3b4c (cooking)',
+      'c1e4b7d2-9f3a-4c8e-b5d9-7e2f4a6c8b1d (fitness)',
+      'd9a2c5e8-4b7f-4d1a-c3e6-8f1b3d5e7a9c (tech)',
+      'e2f5d8a1-7c4b-4e9d-b6f2-9a3c5e7b1d4f (new user)',
+    ],
     demoTenants: ['tenant1', 'tenant2', 'tenant3'],
   });
 });
@@ -84,8 +90,14 @@ app.listen(PORT, () => {
   console.log(`  GET /v1/feed?user_id=<id>&tenant_id=<id>&limit=<n>`);
   console.log(`  GET /v1/feed/non-personalized?tenant_id=<id>&limit=<n>`);
   console.log('');
-  console.log('Try demo users: alice, bob, charlie, diana');
-  console.log('Try tenants: tenant1, tenant2, tenant3');
+  console.log('Demo user IDs (hashed):');
+  console.log('  Gaming:  a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c');
+  console.log('  Cooking: b8d2e5f1-3c9a-4e7b-a2f5-6d8c9e1a3b4c');
+  console.log('  Fitness: c1e4b7d2-9f3a-4c8e-b5d9-7e2f4a6c8b1d');
+  console.log('  Tech:    d9a2c5e8-4b7f-4d1a-c3e6-8f1b3d5e7a9c');
+  console.log('  New:     e2f5d8a1-7c4b-4e9d-b6f2-9a3c5e7b1d4f');
+  console.log('');
+  console.log('Try tenants: tenant1, tenant2, tenant3, tenant4');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log('');
 });

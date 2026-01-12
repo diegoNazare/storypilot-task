@@ -20,7 +20,7 @@ echo "Users will be consistently assigned based on their user_id hash"
 echo ""
 
 # Test multiple user IDs to see which ones fall into the 50% rollout
-test_users=("testuser1" "testuser999" "alice" "bob" "charlie" "diana" "user123" "user456" "user789" "admin")
+test_users=("f1a8c3e6-2b9d-4f7a-c5e8-1d3b6f9a2c4e" "f9c2e5a8-7d4b-4a1f-e3c6-8b1d5f2a7c9e" "1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5d" "2b3c4d5e-6f7a-4b8c-9d0e-1f2a3b4c5d6e" "3c4d5e6f-7a8b-4c9d-0e1f-2a3b4c5d6e7f" "4d5e6f7a-8b9c-4d0e-1f2a-3b4c5d6e7f8a" "5e6f7a8b-9c0d-4e1f-2a3b-4c5d6e7f8a9b" "6f7a8b9c-0d1e-4f2a-3b4c-5d6e7f8a9b0c" "7a8b9c0d-1e2f-4a3b-4c5d-6e7f8a9b0c1d" "8b9c0d1e-2f3a-4b4c-5d6e-7f8a9b0c1d2e")
 
 in_rollout=0
 not_in_rollout=0
@@ -38,12 +38,15 @@ for user in "${test_users[@]}"; do
     }
   ")
   
+  # Show abbreviated user ID (first 8 chars)
+  user_short="${user:0:8}..."
+  
   if echo "$personalized" | grep -q "YES"; then
-    echo "  ✅ ${user}: IN rollout (gets personalization)"
+    echo "  ✅ ${user_short}: IN rollout (gets personalization)"
     in_rollout=$((in_rollout + 1))
   else
     reason=$(echo "$personalized" | grep "REASON:" | cut -d: -f2-)
-    echo "  ⭕ ${user}: NOT in rollout (editorial feed)${reason:+ - $reason}"
+    echo "  ⭕ ${user_short}: NOT in rollout (editorial feed)${reason:+ - $reason}"
     not_in_rollout=$((not_in_rollout + 1))
   fi
 done
@@ -62,8 +65,9 @@ echo ""
 echo "Testing consistency (same user should always get same result)..."
 echo ""
 
-test_user="alice"
-echo "Making 3 requests for user '${test_user}':"
+test_user="a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c"
+test_user_short="${test_user:0:8}..."
+echo "Making 3 requests for user '${test_user_short}':"
 
 for i in {1..3}; do
   response=$(curl -s "http://localhost:3001/v1/feed?user_id=${test_user}&tenant_id=tenant4&limit=3")
@@ -86,8 +90,8 @@ echo ""
 echo "Comparing tenant1 (100% rollout) vs tenant4 (50% rollout)..."
 echo ""
 
-response_t1=$(curl -s "http://localhost:3001/v1/feed?user_id=alice&tenant_id=tenant1&limit=3")
-response_t4=$(curl -s "http://localhost:3001/v1/feed?user_id=alice&tenant_id=tenant4&limit=3")
+response_t1=$(curl -s "http://localhost:3001/v1/feed?user_id=a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c&tenant_id=tenant1&limit=3")
+response_t4=$(curl -s "http://localhost:3001/v1/feed?user_id=a3f7c4e9-8b2d-4a1f-9c3e-5d6b8a0e1f2c&tenant_id=tenant4&limit=3")
 
 echo "Tenant1 (100% rollout):"
 echo "$response_t1" | node -e "
