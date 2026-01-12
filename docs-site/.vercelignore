@@ -1,0 +1,25 @@
+# Dependencies
+node_modules
+
+# Testing
+tests
+*.test.*
+*.spec.*
+
+# Development files
+.env.local
+.env*.local
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

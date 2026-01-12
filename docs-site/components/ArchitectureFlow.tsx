@@ -183,15 +183,7 @@ export default function ArchitectureFlow() {
         attributionPosition="bottom-left"
       >
         <Background color="#E5E5E5" gap={16} />
-        <Controls 
-          style={{ 
-            button: { 
-              background: '#FAFAFA', 
-              border: '1px solid #1A1A1A',
-              color: '#1A1A1A'
-            } 
-          }}
-        />
+        <Controls />
         <MiniMap 
           nodeColor={() => '#FAFAFA'}
           nodeStrokeColor={() => '#1A1A1A'}

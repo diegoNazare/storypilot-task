@@ -31,6 +31,9 @@ npm run build
 npm start
 ```
 
+**To deploy to Vercel:**
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions.
+
 ### 2. Working Prototype API
 Functional Node.js/Express API demonstrating personalization logic.
 

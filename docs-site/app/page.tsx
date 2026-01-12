@@ -26,7 +26,7 @@ export default function Home() {
               View Architecture <ArrowRight size={16} />
             </Link>
             <a 
-              href="http://localhost:3001"
+              href={process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 border border-ink text-ink font-body text-sm uppercase tracking-wide hover:bg-cloud transition-colors"
