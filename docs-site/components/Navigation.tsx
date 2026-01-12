@@ -33,7 +33,7 @@ export default function Navigation() {
       <nav className="hidden lg:block fixed left-0 top-0 h-screen w-64 bg-white border-r border-mist p-8 overflow-y-auto">
         <Link href="/" className="block mb-12">
           <h1 className="font-headline text-2xl tracking-[0.04em] uppercase">
-            Storyteller
+            Storypilot
           </h1>
           <p className="font-body text-xs text-silver mt-1">
             Personalized Feeds

@@ -1,6 +1,6 @@
-# Storyteller Documentation Site
+# Storypilot Documentation Site
 
-Beautiful, minimal documentation for the Storyteller personalized video feeds system.
+Beautiful, minimal documentation for the Storypilot personalized video feeds system.
 
 ## Quick Start
 

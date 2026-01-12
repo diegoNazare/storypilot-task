@@ -3,7 +3,7 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 
 export const metadata: Metadata = {
-  title: "Storyteller - Personalized Video Feeds",
+  title: "Storypilot - Personalized Video Feeds",
   description: "System design for personalized video feed platform",
   icons: {
     icon: '/favicon.svg',

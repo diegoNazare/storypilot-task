@@ -8,7 +8,7 @@ export default function Home() {
       <div className="pattern-diagonal border-b border-mist">
         <div className="max-w-4xl mx-auto px-8 py-24">
           <h1 className="font-headline text-6xl uppercase tracking-[0.04em] mb-4">
-            Storyteller
+            Storypilot
           </h1>
           <p className="font-headline text-3xl uppercase tracking-[0.04em] text-silver mb-8">
             Personalized Video Feeds
