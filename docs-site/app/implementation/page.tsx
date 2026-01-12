@@ -167,7 +167,7 @@ export default function ImplementationPage() {
       <Section title="What Was Prioritized">
         <div className="bg-white space-y-3">
           <div className="flex items-start gap-3">
-            <div className="w-6 h-6 border border-ink flex items-center justify-center flex-shrink-0 mt-1">
+            <div className="w-6 h-6 border border-ink flex items-center justify-center shrink-0 mt-1">
               <span className="font-body text-xs">1</span>
             </div>
             <div>
@@ -180,7 +180,7 @@ export default function ImplementationPage() {
           </div>
 
           <div className="flex items-start gap-3">
-            <div className="w-6 h-6 border border-ink flex items-center justify-center flex-shrink-0 mt-1">
+            <div className="w-6 h-6 border border-ink flex items-center justify-center shrink-0 mt-1">
               <span className="font-body text-xs">2</span>
             </div>
             <div>
@@ -193,7 +193,7 @@ export default function ImplementationPage() {
           </div>
 
           <div className="flex items-start gap-3">
-            <div className="w-6 h-6 border border-ink flex items-center justify-center flex-shrink-0 mt-1">
+            <div className="w-6 h-6 border border-ink flex items-center justify-center shrink-0 mt-1">
               <span className="font-body text-xs">3</span>
             </div>
             <div>
@@ -206,7 +206,7 @@ export default function ImplementationPage() {
           </div>
 
           <div className="flex items-start gap-3">
-            <div className="w-6 h-6 border border-ink flex items-center justify-center flex-shrink-0 mt-1">
+            <div className="w-6 h-6 border border-ink flex items-center justify-center shrink-0 mt-1">
               <span className="font-body text-xs">4</span>
             </div>
             <div>
