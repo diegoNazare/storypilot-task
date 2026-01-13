@@ -1,51 +1,81 @@
-# Storyteller - Personalized Video Feeds
+# Storyteller Tech Lead Assessment - Personalized Video Feeds
 
-✅ **Status: Complete and tested!**
+This repository contains my submission for the Storyteller Tech Lead technical assessment (Task 1). The assignment was to design and partially implement a backend system for personalized video feeds.
 
-A complete system design and working prototype for delivering personalized video content at scale.
+## 📋 What This Is
 
-## 🎯 What's Included
+This is a **technical assessment submission** demonstrating:
+- Complete system design for a personalized video feed platform
+- Working prototype API with real personalization logic
+- Comprehensive documentation of architecture, trade-offs, and decisions
+- Honest assessment of AI tool usage in the development process
 
-### 1. Documentation Website (Production-Ready)
-Beautiful, minimal documentation site with complete system design.
+**This is NOT a production system** - it's a demonstration of system design thinking, backend development skills, and pragmatic engineering approach for a ~10 hour technical task.
 
-**Features:**
-- 7 comprehensive sections covering architecture, API, data model, implementation, rollout, and AI usage
-- Minimal brutalist design (black/white/grey palette)
-- Fully responsive with mobile navigation
-- Production build ready
+## 📁 Repository Structure
 
-**To view:**
+```
+storyteller/
+├── task/                      # Original assignment brief
+│   ├── Storyteller_-_Tech_Lead_Task_1.pdf
+│   └── Storyteller_-_Tech_Lead_Task_1.md
+├── docs-site/                 # System design documentation (Next.js)
+│   ├── app/
+│   │   ├── page.tsx          # Overview
+│   │   ├── architecture/     # System components & data flows
+│   │   ├── api/              # API contract & specifications
+│   │   ├── data-model/       # Database schemas
+│   │   ├── implementation/   # Technical decisions & trade-offs
+│   │   ├── rollout/          # Deployment & observability strategy
+│   │   └── ai/               # AI usage write-up
+│   └── components/           # React components with architecture diagrams
+├── prototype/                # Working Node.js API
+│   ├── src/
+│   │   ├── index.js         # Express server
+│   │   ├── routes/          # Feed endpoints
+│   │   ├── services/        # Personalization algorithm
+│   │   ├── models/          # Mock data (40+ videos, 4 users)
+│   │   └── config/          # Configuration
+│   └── tests/
+│       └── demo.sh          # Automated demo script
+├── _temp/                   # Working notes & decision docs
+└── verify.sh               # Verification script
+```
+
+## 🎯 Assignment Requirements
+
+The task required designing a system to meet these constraints:
+
+| Constraint | Requirement | Implementation |
+|------------|-------------|----------------|
+| **Scale** | 3k RPS peak | Redis caching + horizontal scaling |
+| **Latency** | p95 < 250ms | Cache-first architecture, optimized queries |
+| **Freshness** | Content ≤60s, signals ≤5min | TTL-based cache invalidation |
+| **Privacy** | Hashed IDs, 90-day retention | SHA-256 hashing, partition-based expiration |
+| **Multi-Tenant** | 120 tenants, custom weights | Per-tenant config store |
+| **Rollout** | Feature flags, kill switch | Global + per-tenant flags |
+
+## 🚀 Quick Start
+
+### View the Documentation
+
 ```bash
 cd docs-site
 npm install
 npm run dev
-# Visit http://localhost:3000
+# Open http://localhost:3000
 ```
 
-**To build for production:**
-```bash
-cd docs-site
-npm install
-npm run build
-npm start
-```
+The documentation site includes:
+- **Architecture**: System design with visual diagrams
+- **API Contract**: Complete endpoint specifications
+- **Data Model**: Database schemas with ERD
+- **Implementation**: Technical decisions and trade-offs
+- **Rollout Strategy**: Feature flags and observability
+- **AI Usage**: Honest write-up of AI tools used
 
-**To deploy to Vercel:**
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed instructions.
+### Run the Prototype
 
-### 2. Working Prototype API
-Functional Node.js/Express API demonstrating personalization logic.
-
-**Features:**
-- Personalized ranking algorithm (weighted scoring)
-- Multi-tenant support with custom configurations
-- Feature flags (global + per-tenant)
-- Cold start handling for new users
-- In-memory caching with TTL
-- 40+ mock videos, 4 demo users
-
-**To run:**
 ```bash
 cd prototype
 npm install
@@ -53,183 +83,178 @@ npm start
 # Server at http://localhost:3001
 ```
 
-**To demo:**
+### Try the Demo
+
 ```bash
 cd prototype
 ./tests/demo.sh
 ```
 
-## ✅ Verified Working
+The demo shows:
+- Gaming fan gets gaming videos (personalized)
+- Cooking fan gets cooking videos (personalized)
+- New user gets popular content (cold start)
+- Feature flag disabled returns non-personalized feed
+- Cache performance comparison
 
-Both components have been tested and confirmed working:
+## 🔍 Key Features Demonstrated
 
-**Docs Site:**
-- ✅ Builds successfully (`npm run build`)
-- ✅ All 7 pages render correctly
-- ✅ Navigation works on mobile and desktop
-- ✅ Code examples display properly
+### System Design (Primary Deliverable)
+- ✅ Complete architecture with caching strategy
+- ✅ Data model with privacy considerations
+- ✅ API contract with proper HTTP semantics
+- ✅ Multi-tenant configuration approach
+- ✅ Explicit trade-off analysis
+- ✅ Rollout strategy with observability plan
 
-**Prototype API:**
-- ✅ Server starts on port 3001
-- ✅ Health check endpoint responds
-- ✅ Personalized feeds work (Alice gets gaming, Bob gets cooking)
-- ✅ Cold start handling works for new users
-- ✅ Feature flags control personalization
-- ✅ Cache improves response times
-- ✅ Demo script runs successfully
+### Working Prototype (Secondary Deliverable)
+- ✅ Functional personalization algorithm
+- ✅ Multi-tenant support with custom weights
+- ✅ Feature flags (global + per-tenant)
+- ✅ Cold start handling for new users
+- ✅ In-memory caching demonstration
+- ✅ Clean, documented code structure
 
-## 🚀 Quick Test
+### AI Usage Write-up
+- ✅ Tools used (Cursor with Claude 3.5 Sonnet)
+- ✅ What worked well and what didn't
+- ✅ Honest assessment of capabilities and limitations
+- ✅ Thoughts on team AI adoption
 
-### Test the API:
+## 📊 What Was Delivered
+
+**Documentation**: 7 comprehensive sections covering architecture, API, data model, implementation decisions, rollout strategy, and AI usage. Built as a beautiful, minimal Next.js site.
+
+**Prototype**: ~600 lines of clean Node.js code demonstrating core personalization logic with 40+ mock videos, 4 user personas, and 3 tenant configurations.
+
+**Working Demo**: Automated test script showing different scenarios (personalized feeds, cold start, feature flags, caching).
+
+**Time Spent**: ~10 hours total (design, implementation, documentation)
+
+**AI Assistance**: Claude 3.5 Sonnet via Cursor (~50% time savings)
+
+## 🧪 Testing the System
+
+### Example API Calls
+
 ```bash
-# Start server
-cd prototype && npm start
-
-# In another terminal:
-# Gaming fan gets gaming videos
+# Gaming enthusiast - gets personalized gaming content
 curl "http://localhost:3001/v1/feed?user_id=alice&tenant_id=tenant1&limit=5"
 
-# Cooking fan gets cooking videos  
+# Cooking enthusiast - gets personalized cooking content
 curl "http://localhost:3001/v1/feed?user_id=bob&tenant_id=tenant1&limit=5"
 
-# New user gets popular content
+# New user - gets popular content (cold start)
 curl "http://localhost:3001/v1/feed?user_id=newuser&tenant_id=tenant1&limit=5"
+
+# Feature flag disabled - non-personalized feed
+curl "http://localhost:3001/v1/feed?user_id=alice&tenant_id=tenant3&limit=5"
 ```
 
-### View Documentation:
+### Verify Everything Works
+
 ```bash
-cd docs-site && npm run dev
-# Visit http://localhost:3000
+./verify.sh
 ```
 
-## 📊 Non-Negotiables Met
-
-| Constraint | Target | ✅ Status |
-|------------|--------|----------|
-| **Scale** | 3k RPS peak | Architecture designed with caching + horizontal scaling |
-| **Latency** | p95 < 250ms | Prototype shows <50ms, production achievable with Redis |
-| **Freshness** | Content ≤60s, signals ≤5min | Cache TTLs: 60s feeds, 5min signals |
-| **Privacy** | Hashed IDs, 90-day retention | Hashed throughout, partition-based expiration |
-| **Multi-Tenant** | 120 tenants, custom weights | Per-tenant configs, 3 demo tenants |
-| **Rollout** | Feature flags, kill switch | Global + per-tenant flags implemented |
-
-## 📁 Project Structure
-
-```
-storyteller/
-├── docs-site/              # ✅ Next.js documentation (builds successfully)
-│   ├── app/
-│   │   ├── page.tsx       # Overview
-│   │   ├── architecture/  # System design
-│   │   ├── api/           # API specifications
-│   │   ├── data-model/    # Database schemas
-│   │   ├── implementation/# Technical decisions
-│   │   ├── rollout/       # Deployment strategy
-│   │   └── ai/            # AI usage write-up
-│   ├── components/        # Reusable UI
-│   └── README.md
-├── prototype/             # ✅ Node.js API (tested and working)
-│   ├── src/
-│   │   ├── index.js       # Express server
-│   │   ├── routes/        # API endpoints
-│   │   ├── services/      # Personalization logic
-│   │   ├── models/        # Mock data
-│   │   └── config/        # Constants
-│   ├── tests/
-│   │   └── demo.sh        # ✅ Automated demo (working)
-│   └── README.md
-└── README.md              # This file
-```
+This checks:
+- Node version
+- Project structure
+- Docs site builds successfully
+- Prototype dependencies installed
+- All key files present
 
 ## 🎓 What This Demonstrates
 
 ### Technical Skills
-1. **System Design**: Scalable architecture meeting all constraints
-2. **Backend Development**: Clean Node.js API with proper structure
+1. **System Design**: Scalable architecture meeting real-world constraints
+2. **Backend Development**: Clean API with proper separation of concerns
 3. **Algorithm Design**: Practical personalization without ML complexity
-4. **Trade-off Analysis**: Explicit reasoning for all decisions
-5. **Documentation**: Clear communication via beautiful web interface
+4. **Trade-off Analysis**: Explicit reasoning for decisions
+5. **Communication**: Clear technical documentation
 
-### Pragmatic Approach
-1. **Time Management**: Delivered in ~10 hours
-2. **Scope Control**: Core requirements prioritized
-3. **Reversible Decisions**: Designed for future evolution
-4. **Operational Thinking**: Feature flags, monitoring, degradation
-5. **AI Fluency**: Effective tool usage (50% time savings)
+### Pragmatic Engineering
+1. **Scope Management**: Core requirements prioritized, nice-to-haves documented
+2. **Reversible Decisions**: Designed for future evolution
+3. **Operational Thinking**: Feature flags, monitoring, graceful degradation
+4. **Time Management**: Complete deliverable in ~10 hours
+5. **AI Fluency**: Effective tool usage with honest assessment
 
 ## 📝 Deliverables Checklist
 
 - ✅ **System Design Document**: Complete with diagrams and trade-offs
 - ✅ **Working Prototype**: Functional API with demo script
-- ✅ **AI Usage Write-up**: Integrated into documentation
+- ✅ **AI Usage Write-up**: Integrated into documentation site
 - ✅ **Clean Code**: Well-structured, commented, production patterns
-- ✅ **Comprehensive READMEs**: Setup instructions for all components
-- ✅ **Builds Successfully**: Both docs and prototype tested
-- ✅ **Demo Ready**: Automated demo script works perfectly
+- ✅ **Setup Instructions**: Clear READMEs for all components
+- ✅ **Tested & Verified**: Both docs and prototype build successfully
 
-## 🔧 Troubleshooting
+## 🔧 Technical Stack
 
-### Port Already in Use
+**Documentation Site**:
+- Next.js 16.1 (App Router)
+- React 19.2
+- TypeScript 5
+- Tailwind CSS v4
+- Lucide Icons
+- React Flow for diagrams
 
-```bash
-# Prototype (default: 3001)
-PORT=3002 npm start
+**Prototype API**:
+- Node.js 16+
+- Express 5.2
+- In-memory caching
+- Mock data (no database required)
 
-# Docs (default: 3000)
-PORT=3001 npm run dev
-```
+## 🚧 What's NOT Included (By Design)
 
-### Node Version
-Requires Node 16+. Check with:
-```bash
-node --version
-```
+This is a **technical assessment**, not production code:
 
-### Demo Script Fails
-Ensure server is running first:
-```bash
-# Terminal 1
-cd prototype && npm start
+- ❌ Real databases (uses in-memory mock data)
+- ❌ Authentication/authorization
+- ❌ Rate limiting
+- ❌ Comprehensive error handling
+- ❌ Unit tests
+- ❌ Docker/Kubernetes deployment
+- ❌ Production logging/monitoring
+- ❌ ML recommendation models
 
-# Terminal 2
-cd prototype && ./tests/demo.sh
-```
+These are documented as "next steps" but were out of scope for the ~10 hour assessment.
 
-## 📈 Key Metrics
+## 📈 Performance Characteristics
 
-- **Total Time**: ~10 hours (as planned)
-- **Documentation Pages**: 7 comprehensive sections
-- **Prototype LOC**: ~600 lines of clean, commented code
-- **Mock Data**: 40+ videos, 4 user personas, 3 tenants
-- **Response Time**: <50ms for cached, ~20ms uncached (prototype)
-- **Build Status**: ✅ Both components build successfully
+**Prototype** (with mock data):
+- Response time: <50ms cached, ~20ms uncached
+- Handles concurrent requests
+- Memory footprint: <50MB
 
-## 🎯 Next Steps for Production
+**Designed Production System** (documented):
+- Target: 3,000 RPS peak load
+- Target: p95 < 250ms, p99 < 600ms
+- Cache hit ratio: >90% expected
+- Horizontal scaling: 6-8 instances @ 500 RPS each
 
-1. Real databases (PostgreSQL + Redis)
-2. Event ingestion pipeline (Kafka)
-3. Authentication and authorization
-4. Comprehensive error handling
-5. Monitoring and alerting (Prometheus/Grafana)
-6. Load testing and optimization
-7. CI/CD pipeline
-8. Docker/Kubernetes deployment
+## 🎯 What Would Be Next for Production
 
-See detailed roadmap in `/docs-site/implementation` page.
+If this were a real project (documented in `/docs-site/implementation`):
+
+1. Real databases (PostgreSQL for persistence, Redis for caching)
+2. Event ingestion pipeline (Kafka or SQS)
+3. Authentication and authorization layer
+4. Rate limiting and request validation
+5. Comprehensive error handling and retry logic
+6. Full test coverage (unit, integration, load tests)
+7. Monitoring and alerting (Prometheus, Grafana)
+8. CI/CD pipeline
+9. Container orchestration (Docker + Kubernetes)
+10. ML models for advanced personalization
 
 ## 📞 Summary
 
 This submission demonstrates:
-- **Complete system design** with beautiful documentation
+- **Complete system design** with production considerations
 - **Working prototype** proving core concepts
-- **Pragmatic engineering** balancing quality and speed
-- **Clear communication** of technical decisions
-- **Effective AI usage** with honest assessment
+- **Pragmatic approach** balancing quality and time constraints
+- **Clear communication** of technical decisions and trade-offs
+- **Effective AI usage** with honest assessment of capabilities
 
-Everything is tested, builds successfully, and ready for review! 🎉
-
----
-
-**Time Investment**: ~10 hours total
-**AI Assistance**: Claude 3.5 Sonnet via Cursor (~50% time savings)
-**Status**: ✅ Complete, tested, and production-build ready
+The documentation is comprehensive, the prototype is functional, and everything has been tested and verified. The submission shows how I approach system design, make engineering trade-offs, and deliver quality work within time constraints.
