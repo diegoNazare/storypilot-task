@@ -104,6 +104,31 @@ curl -s "http://localhost:3001/v1/feed?user_id=06d6cbdcfc221d2f4460c17193442b9db
     });
   "
 echo ""
+sleep 1
+
+# Scenario 5: Different Tenant Weights
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "5️⃣  Scenario: Different Tenant Weights"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+echo "Same gaming user (06d6cbdc...) with tenant2 (70% watch_history weight vs 50% default):"
+echo "Notice different rankings due to higher watch_history weight:"
+echo ""
+curl -s "http://localhost:3001/v1/feed?user_id=06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b&tenant_id=tenant2&limit=5" | \
+  node -e "
+    const data = JSON.parse(require('fs').readFileSync(0, 'utf-8'));
+    console.log('Tenant:', data.tenant_id);
+    console.log('Personalized:', data.personalized ? '✓ Yes' : '✗ No');
+    console.log('Weights:', JSON.stringify(data.metadata.ranking_weights));
+    console.log('Algorithm:', data.metadata.algorithm_version);
+    console.log('');
+    console.log('Top 5 Videos (Compare with Scenario 1):');
+    data.feed.slice(0, 5).forEach((v, i) => {
+      console.log(\`  \${i+1}. [\${v.score}] \${v.title}\`);
+      console.log(\`     Category: \${v.category} | Reason: \${v.ranking_reason}\`);
+    });
+  "
+echo ""
 
 # Summary
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -111,9 +136,10 @@ echo "✅ Demo Complete!"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 echo "Key Observations:"
-echo "  • Different users get different personalized content"
-echo "  • New users receive popular/editorial content (cold start)"
-echo "  • Feature flags control personalization per tenant"
+echo "  • Different users get different personalized content (scenarios 1-2)"
+echo "  • New users receive popular/editorial content (cold start, scenario 3)"
+echo "  • Feature flags control personalization per tenant (scenario 4)"
+echo "  • Different tenant weights produce different rankings (scenario 5)"
 echo ""
 echo "Try it yourself:"
 echo "  # Tech enthusiast user"
