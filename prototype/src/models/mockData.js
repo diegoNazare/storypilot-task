@@ -61,6 +61,13 @@ const videos = [
   { id: 'vid_042', tenant_id: 'tenant2', title: 'Marketing Strategy Tips', category: 'business', duration_seconds: 600, editorial_boost: 1.2, created_at: '2026-01-11T11:00:00Z' },
   { id: 'vid_043', tenant_id: 'tenant2', title: 'CEO Interview', category: 'business', duration_seconds: 900, editorial_boost: 1.4, created_at: '2026-01-09T12:00:00Z' },
   
+  // Tenant 3 videos (for feature flag testing - personalization disabled)
+  { id: 'vid_047', tenant_id: 'tenant3', title: 'Documentary: World History', category: 'education', duration_seconds: 3600, editorial_boost: 1.5, created_at: '2026-01-10T10:00:00Z' },
+  { id: 'vid_048', tenant_id: 'tenant3', title: 'Nature Photography Tips', category: 'photography', duration_seconds: 600, editorial_boost: 1.4, created_at: '2026-01-11T09:00:00Z' },
+  { id: 'vid_049', tenant_id: 'tenant3', title: 'Wildlife Conservation', category: 'nature', duration_seconds: 900, editorial_boost: 1.3, created_at: '2026-01-09T11:00:00Z' },
+  { id: 'vid_050', tenant_id: 'tenant3', title: 'Astronomy Basics', category: 'science', duration_seconds: 720, editorial_boost: 1.2, created_at: '2026-01-08T14:00:00Z' },
+  { id: 'vid_051', tenant_id: 'tenant3', title: 'Ocean Exploration', category: 'nature', duration_seconds: 1200, editorial_boost: 1.1, created_at: '2026-01-12T10:00:00Z' },
+  
   // Tenant 4 videos (for rollout percentage testing)
   { id: 'vid_044', tenant_id: 'tenant4', title: 'Gaming Highlights', category: 'gaming', duration_seconds: 240, editorial_boost: 1.3, created_at: '2026-01-10T14:00:00Z' },
   { id: 'vid_045', tenant_id: 'tenant4', title: 'Cooking Tutorial', category: 'cooking', duration_seconds: 360, editorial_boost: 1.2, created_at: '2026-01-11T10:00:00Z' },

@@ -111,22 +111,41 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo "5️⃣  Scenario: Cache Performance"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
-echo "Second request for same user should hit cache (faster response):"
+echo "Testing cache performance with a unique user (cache miss vs cache hit):"
 echo ""
 
+# Use a unique user_id that hasn't been cached yet
+CACHE_TEST_USER="a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456"
+echo "Testing with user: ${CACHE_TEST_USER:0:8}..."
+
 # First request (cache miss)
-RESPONSE1=$(curl -s "http://localhost:3001/v1/feed?user_id=06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b&tenant_id=tenant1&limit=5")
+RESPONSE1=$(curl -s "http://localhost:3001/v1/feed?user_id=${CACHE_TEST_USER}&tenant_id=tenant1&limit=5")
 TIME1=$(echo $RESPONSE1 | node -e "console.log(JSON.parse(require('fs').readFileSync(0, 'utf-8')).metadata.response_time_ms)")
 CACHE1=$(echo $RESPONSE1 | node -e "console.log(JSON.parse(require('fs').readFileSync(0, 'utf-8')).metadata.cache_hit)")
 
 echo "First request:  ${TIME1}ms (cache_hit: ${CACHE1})"
 
+# Small delay to ensure cache is set
+sleep 0.1
+
 # Second request (cache hit)
-RESPONSE2=$(curl -s "http://localhost:3001/v1/feed?user_id=06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b&tenant_id=tenant1&limit=5")
+RESPONSE2=$(curl -s "http://localhost:3001/v1/feed?user_id=${CACHE_TEST_USER}&tenant_id=tenant1&limit=5")
 TIME2=$(echo $RESPONSE2 | node -e "console.log(JSON.parse(require('fs').readFileSync(0, 'utf-8')).metadata.response_time_ms)")
 CACHE2=$(echo $RESPONSE2 | node -e "console.log(JSON.parse(require('fs').readFileSync(0, 'utf-8')).metadata.cache_hit)")
 
 echo "Second request: ${TIME2}ms (cache_hit: ${CACHE2})"
+
+if [ "$CACHE1" = "false" ] && [ "$CACHE2" = "true" ]; then
+  SPEEDUP=$(echo "scale=1; $TIME1 / $TIME2" | bc 2>/dev/null || echo "N/A")
+  echo ""
+  echo "✓ Cache working correctly! Speedup: ${SPEEDUP}x"
+elif [ "$CACHE1" = "true" ]; then
+  echo ""
+  echo "⚠ Warning: First request hit cache (may have been cached from previous run)"
+else
+  echo ""
+  echo "⚠ Warning: Cache behavior unexpected"
+fi
 echo ""
 
 # Summary
