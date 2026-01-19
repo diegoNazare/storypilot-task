@@ -35,6 +35,7 @@ app.get('/', (req, res) => {
       gamingUser: 'GET /v1/feed?user_id=06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b&tenant_id=tenant1&limit=5',
       cookingUser: 'GET /v1/feed?user_id=3e0e7f64a2495659941e0b704069bcb310d8dfcab850ba1aa992669ef6f55bcb&tenant_id=tenant1&limit=5',
       newUser: 'GET /v1/feed?user_id=6f015e465db03f8a847292bf8624f567167f87f0ea0aa223d1e31779cad855c7&tenant_id=tenant1&limit=5',
+      differentWeights: 'GET /v1/feed?user_id=06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b&tenant_id=tenant2&limit=5',
     },
     demoUsers: [
       '06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b (gaming)',
@@ -44,6 +45,13 @@ app.get('/', (req, res) => {
       '6f015e465db03f8a847292bf8624f567167f87f0ea0aa223d1e31779cad855c7 (new user)',
     ],
     demoTenants: ['tenant1', 'tenant2', 'tenant3'],
+    demoScenarios: [
+      '1. Gaming Enthusiast (tenant1) - Personalized feed',
+      '2. Cooking Enthusiast (tenant1) - Different personalized feed',
+      '3. New User (tenant1) - Cold start with editorial content',
+      '4. Feature Flag Disabled (tenant3) - Tenant-level personalization disabled',
+      '5. Different Tenant Weights (tenant2) - Same user, different rankings',
+    ],
   });
 });
 

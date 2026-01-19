@@ -56,10 +56,24 @@ const videos = [
   { id: 'vid_039', tenant_id: 'tenant1', title: 'Math Made Easy', category: 'education', duration_seconds: 540, editorial_boost: 1.0, created_at: '2026-01-08T14:00:00Z' },
   { id: 'vid_040', tenant_id: 'tenant1', title: 'Art History Masterclass', category: 'education', duration_seconds: 1200, editorial_boost: 1.3, created_at: '2026-01-12T13:00:00Z' },
   
-  // Tenant 2 videos (different content)
+  // Tenant 2 videos (same gaming videos as tenant1 for weight comparison demo)
+  // Business videos
   { id: 'vid_041', tenant_id: 'tenant2', title: 'Product Launch Event', category: 'business', duration_seconds: 1800, editorial_boost: 1.5, created_at: '2026-01-10T10:00:00Z' },
   { id: 'vid_042', tenant_id: 'tenant2', title: 'Marketing Strategy Tips', category: 'business', duration_seconds: 600, editorial_boost: 1.2, created_at: '2026-01-11T11:00:00Z' },
   { id: 'vid_043', tenant_id: 'tenant2', title: 'CEO Interview', category: 'business', duration_seconds: 900, editorial_boost: 1.4, created_at: '2026-01-09T12:00:00Z' },
+  // Same gaming videos as tenant1 (same IDs, different tenant_id for weight comparison)
+  { id: 'vid_001', tenant_id: 'tenant2', title: 'Advanced Gaming Strategies', category: 'gaming', duration_seconds: 180, editorial_boost: 1.2, created_at: '2026-01-10T14:30:00Z' },
+  { id: 'vid_002', tenant_id: 'tenant2', title: 'eSports Tournament Highlights', category: 'gaming', duration_seconds: 240, editorial_boost: 1.0, created_at: '2026-01-11T09:15:00Z' },
+  { id: 'vid_003', tenant_id: 'tenant2', title: 'Gaming Setup Tour 2026', category: 'gaming', duration_seconds: 300, editorial_boost: 1.1, created_at: '2026-01-09T16:20:00Z' },
+  { id: 'vid_004', tenant_id: 'tenant2', title: 'Pro Player Interview', category: 'gaming', duration_seconds: 420, editorial_boost: 1.3, created_at: '2026-01-08T11:00:00Z' },
+  { id: 'vid_005', tenant_id: 'tenant2', title: 'FPS Tips and Tricks', category: 'gaming', duration_seconds: 200, editorial_boost: 1.0, created_at: '2026-01-12T08:30:00Z' },
+  
+  // Tenant 3 videos (for feature flag testing - personalization disabled)
+  { id: 'vid_047', tenant_id: 'tenant3', title: 'Documentary: World History', category: 'education', duration_seconds: 3600, editorial_boost: 1.5, created_at: '2026-01-10T10:00:00Z' },
+  { id: 'vid_048', tenant_id: 'tenant3', title: 'Nature Photography Tips', category: 'photography', duration_seconds: 600, editorial_boost: 1.4, created_at: '2026-01-11T09:00:00Z' },
+  { id: 'vid_049', tenant_id: 'tenant3', title: 'Wildlife Conservation', category: 'nature', duration_seconds: 900, editorial_boost: 1.3, created_at: '2026-01-09T11:00:00Z' },
+  { id: 'vid_050', tenant_id: 'tenant3', title: 'Astronomy Basics', category: 'science', duration_seconds: 720, editorial_boost: 1.2, created_at: '2026-01-08T14:00:00Z' },
+  { id: 'vid_051', tenant_id: 'tenant3', title: 'Ocean Exploration', category: 'nature', duration_seconds: 1200, editorial_boost: 1.1, created_at: '2026-01-12T10:00:00Z' },
   
   // Tenant 4 videos (for rollout percentage testing)
   { id: 'vid_044', tenant_id: 'tenant4', title: 'Gaming Highlights', category: 'gaming', duration_seconds: 240, editorial_boost: 1.3, created_at: '2026-01-10T14:00:00Z' },
@@ -86,7 +100,7 @@ const videos = [
 
 // Mock user signals (watch history and engagement)
 const userSignals = {
-  // Gaming enthusiast
+  // Gaming enthusiast (signals work for both tenant1 and tenant2 since they share same video IDs)
   '06d6cbdcfc221d2f4460c17193442b9db221f30950f1c17af4e73e6e1788002b': [
     { video_id: 'vid_001', event_type: 'complete', engagement_pct: 95, timestamp: '2026-01-09T15:00:00Z' },
     { video_id: 'vid_002', event_type: 'complete', engagement_pct: 100, timestamp: '2026-01-09T15:10:00Z' },
